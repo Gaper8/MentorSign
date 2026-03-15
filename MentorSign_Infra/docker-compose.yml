@@ -1,0 +1,21 @@
+services:
+  db:
+    image: postgres:16
+    environment:
+      POSTGRES_USER: mentorsign
+      POSTGRES_PASSWORD: mentorsign
+      POSTGRES_DB: mentorsign
+    ports:
+      - "5432:5432"
+    volumes:
+      - mentorsign_db:/var/lib/postgresql/data
+
+  adminer:
+    image: adminer
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+
+volumes:
+  mentorsign_db:
